@@ -1,0 +1,119 @@
+2025-09-07 23:27:52,574 - INFO - Starting anomaly detection script
+2025-09-07 23:27:52,574 - INFO - Loading data from ./notebooks/DATABRICKS-PLAYGROUND/data/input/warnings_vin_sample.csv
+2025-09-07 23:27:52,604 - INFO - Converted reporting_date to datetime
+2025-09-07 23:27:52,604 - INFO - Running basic sanity checks...
+2025-09-07 23:27:52,604 - INFO - Dataframe shape: (5055, 8)
+2025-09-07 23:27:52,613 - INFO - Dataframe info: None
+2025-09-07 23:27:52,616 - INFO - 5 Number statistics of anomaly_flag is: count    5055.000000
+mean        0.006726
+std         0.081744
+min         0.000000
+25%         0.000000
+50%         0.000000
+75%         0.000000
+max         1.000000
+Name: anomaly_flag, dtype: float64
+2025-09-07 23:27:52,616 - INFO - Constant columns: ['entity_name']
+2025-09-07 23:27:52,616 - INFO - High-cardinality categoricals: ['ctt_cms_contract_number', 'ctt_vin', 'reporting_date']
+2025-09-07 23:27:52,634 - INFO - Feature Information:                                   dtype  n_missing  % missing  n_unique
+layer_name                       object          0       0.00         2
+ctt_cms_contract_number          object          0       0.00      4680
+ctt_vin                          object       1126      22.27      3563
+ctt_asset_type_segment           object          0       0.00         5
+entity_name                      object          0       0.00         1
+reporting_date           datetime64[ns]          0       0.00       136
+anomaly_description              object          0       0.00         2
+anomaly_flag                      int64          0       0.00         2
+2025-09-07 23:27:52,636 - INFO - Number of duplicate rows: 59
+2025-09-07 23:27:52,636 - INFO - Records with missing VIN but 'No anomaly detected': 1126
+2025-09-07 23:27:53,494 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-07 23:27:53,504 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-07 23:27:55,914 - INFO - Analyzing class imbalance
+2025-09-07 23:27:55,914 - INFO - Class counts: {0: 5021, 1: 34}
+2025-09-07 23:27:55,920 - INFO - Class imbalance ratio: 147.6764705882353
+2025-09-07 23:27:55,920 - INFO - Prevalence: 0.006726013847675569
+2025-09-07 23:27:55,920 - INFO - Wilson 95%% CI for prevalence: low: 0.004817300212341197, high: 0.009383868060175026
+2025-09-07 23:27:55,922 - INFO - Standard Error: 0.0011496160788123943
+2025-09-07 23:27:55,922 - INFO - Calculating required sample size for proportion estimates
+2025-09-07 23:27:55,923 - INFO - Required sample size total: 385
+2025-09-07 23:27:55,923 - INFO - Required positives: 3
+2025-09-07 23:27:55,923 - INFO - Required negatives: 382
+2025-09-07 23:27:55,930 - INFO - Calculating correlation with target
+2025-09-07 23:27:55,938 - INFO - Correlation with target variable 'anomaly_flag' is: anomaly_flag    1.0
+Name: anomaly_flag, dtype: float64
+2025-09-07 23:27:55,946 - INFO - Dropping columns: ['entity_name', 'anomaly_description']
+2025-09-07 23:27:55,952 - INFO - Dropping highly correlated columns: []
+2025-09-07 23:27:55,958 - INFO - Final dataframe shape for modeling: (5055, 6)
+2025-09-07 23:27:55,966 - INFO - Performing train-test split with stratification
+2025-09-07 23:27:55,970 - INFO - Proportion of anomalies: 0.006726013847675569
+2025-09-07 23:27:55,973 - INFO - Train set size: (4044, 5); Test set size: (1011, 5)
+2025-09-07 23:27:55,974 - INFO - Train class distribution: {np.int64(0): np.int64(4017), np.int64(1): np.int64(27)}
+2025-09-07 23:27:55,974 - INFO - Test class distribution: {np.int64(0): np.int64(1004), np.int64(1): np.int64(7)}
+2025-09-07 23:27:56,074 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-07 23:27:56,083 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-07 23:27:56,173 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-07 23:27:56,182 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-07 23:27:57,359 - INFO - Setting up preprocessing pipelines
+2025-09-07 23:27:57,360 - INFO - Numeric features: []
+2025-09-07 23:27:57,360 - INFO - Categorical features: ['layer_name', 'ctt_cms_contract_number', 'ctt_vin', 'ctt_asset_type_segment']
+2025-09-07 23:27:57,360 - INFO - Training Logistic Regression model (round 1)
+2025-09-07 23:27:57,414 - INFO - Train accuracy: 0.9933234421364985
+2025-09-07 23:27:57,433 - INFO - Test accuracy: 0.9930761622156281
+2025-09-07 23:27:57,433 - INFO - Training Random Forest model (round 1)
+2025-09-07 23:27:59,025 - INFO - Train accuracy: 0.9980217606330366
+2025-09-07 23:27:59,094 - INFO - Test accuracy: 0.9910979228486647
+2025-09-07 23:27:59,094 - INFO - Training Logistic Regression model (class imbalance addressed)
+2025-09-07 23:27:59,175 - INFO - Train accuracy: 0.9967853610286844
+2025-09-07 23:27:59,184 - INFO - Test accuracy: 0.9910979228486647
+2025-09-07 23:27:59,184 - INFO - Training Random Forest model (class imbalance addressed)
+2025-09-07 23:28:08,172 - INFO - Train accuracy: 0.9967853610286844
+2025-09-07 23:28:08,288 - INFO - Test accuracy: 0.9910979228486647
+2025-09-07 23:28:08,288 - INFO - Evaluating model performance
+2025-09-07 23:28:08,375 - INFO - Evaluation metrics: {'train_accuray': 0.9933234421364985, 'test_accuracy': 0.9930761622156281, 'roc_auc': np.float64(0.5898548662492885), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.008683938732535238), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.5)}
+2025-09-07 23:28:08,383 - INFO - Classification report:               precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00      1004
+           1       0.00      0.00      0.00         7
+
+    accuracy                           0.99      1011
+   macro avg       0.50      0.50      0.50      1011
+weighted avg       0.99      0.99      0.99      1011
+
+2025-09-07 23:28:08,384 - INFO - Confusion matrix: [[1004    0]
+ [   7    0]]
+2025-09-07 23:28:08,444 - INFO - Evaluation metrics: {'train_accuray': 0.9967853610286844, 'test_accuracy': 0.9910979228486647, 'roc_auc': np.float64(0.5898548662492886), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.008683938732535238), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.499003984063745)}
+2025-09-07 23:28:08,452 - INFO - Classification report:               precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00      1004
+           1       0.00      0.00      0.00         7
+
+    accuracy                           0.99      1011
+   macro avg       0.50      0.50      0.50      1011
+weighted avg       0.99      0.99      0.99      1011
+
+2025-09-07 23:28:08,453 - INFO - Confusion matrix: [[1002    2]
+ [   7    0]]
+2025-09-07 23:28:08,991 - INFO - Evaluation metrics: {'train_accuray': 0.9980217606330366, 'test_accuracy': 0.9910979228486647, 'roc_auc': np.float64(0.49302788844621515), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.006923837784371909), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.499003984063745)}
+2025-09-07 23:28:08,994 - INFO - Classification report:               precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00      1004
+           1       0.00      0.00      0.00         7
+
+    accuracy                           0.99      1011
+   macro avg       0.50      0.50      0.50      1011
+weighted avg       0.99      0.99      0.99      1011
+
+2025-09-07 23:28:08,995 - INFO - Confusion matrix: [[1002    2]
+ [   7    0]]
+2025-09-07 23:28:09,794 - INFO - Evaluation metrics: {'train_accuray': 0.9967853610286844, 'test_accuracy': 0.9910979228486647, 'roc_auc': np.float64(0.49302788844621515), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.006923837784371909), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.499003984063745)}
+2025-09-07 23:28:09,803 - INFO - Classification report:               precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00      1004
+           1       0.00      0.00      0.00         7
+
+    accuracy                           0.99      1011
+   macro avg       0.50      0.50      0.50      1011
+weighted avg       0.99      0.99      0.99      1011
+
+2025-09-07 23:28:09,804 - INFO - Confusion matrix: [[1002    2]
+ [   7    0]]
