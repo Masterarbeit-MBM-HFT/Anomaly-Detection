@@ -1,83 +1,395 @@
-2025-09-10 00:07:30,429 - INFO - Starting anomaly detection script
-2025-09-10 00:07:30,429 - INFO - Loading data from ./anomaly_detection_final/data/input/warnings_vin_sample.csv
-2025-09-10 00:07:30,473 - INFO - Converted reporting_date to datetime
-2025-09-10 00:07:30,473 - INFO - Dataframe shape: (5055, 8)
-2025-09-10 00:07:30,483 - INFO - Dataframe info:
+2025-09-10 23:40:07,313 - INFO - Starting anomaly detection script
+2025-09-10 23:40:07,313 - INFO - Loading data from ./anomaly_detection_final/data/input/warnings_vin_sample_50000.csv
+2025-09-10 23:40:07,371 - INFO - Converted reporting_date to datetime
+2025-09-10 23:40:07,371 - INFO - Dataframe shape: (50550, 8)
+2025-09-10 23:40:07,383 - INFO - Dataframe info:
 None
-2025-09-10 00:07:30,489 - INFO - 5 Number statistics of anomaly_flag is: count    5055.000000
-mean        0.006726
-std         0.081744
-min         0.000000
-25%         0.000000
-50%         0.000000
-75%         0.000000
-max         1.000000
+2025-09-10 23:40:07,385 - INFO - 5 Number statistics of anomaly_flag is: count    50550.000000
+mean         0.006627
+std          0.081138
+min          0.000000
+25%          0.000000
+50%          0.000000
+75%          0.000000
+max          1.000000
 Name: anomaly_flag, dtype: float64
-2025-09-10 00:07:30,491 - INFO - Constant columns: ['entity_name']
-2025-09-10 00:07:30,494 - INFO - High-cardinality categoricals: ['ctt_cms_contract_number', 'ctt_vin', 'reporting_date']
-2025-09-10 00:07:30,506 - INFO - Feature Information:
+2025-09-10 23:40:07,399 - INFO - Constant columns: ['entity_name']
+2025-09-10 23:40:07,414 - INFO - High-cardinality categoricals: ['ctt_cms_contract_number', 'ctt_vin', 'reporting_date']
+2025-09-10 23:40:07,448 - INFO - Feature Information:
                                   dtype  n_missing  % missing  n_unique
 layer_name                       object          0       0.00         2
-ctt_cms_contract_number          object          0       0.00      4680
-ctt_vin                          object       1126      22.27      3563
-ctt_asset_type_segment           object          0       0.00         5
+ctt_cms_contract_number          object          0       0.00     32221
+ctt_vin                          object      11104      21.97     24525
+ctt_asset_type_segment           object          0       0.00         6
 entity_name                      object          0       0.00         1
-reporting_date           datetime64[ns]          0       0.00       136
+reporting_date           datetime64[ns]          0       0.00       137
 anomaly_description              object          0       0.00         2
 anomaly_flag                      int64          0       0.00         2
-2025-09-10 00:07:30,509 - INFO - Number of duplicate rows: 59
-2025-09-10 00:07:30,512 - INFO - Records with missing VIN but 'No anomaly detected': 1126
-2025-09-10 00:07:30,512 - INFO - Analyzing class imbalance
-2025-09-10 00:07:30,513 - INFO - Class counts: {0: 5021, 1: 34}
-2025-09-10 00:07:30,513 - INFO - Class imbalance ratio: 147.6764705882353
-2025-09-10 00:07:30,513 - INFO - Prevalence: 0.006726013847675569
-2025-09-10 00:07:30,513 - INFO - Wilson 95% CI for prevalence: low: 0.004817300212341197, high: 0.009383868060175026
-2025-09-10 00:07:30,514 - INFO - Standard Error: 0.0011496160788123943
-2025-09-10 00:07:30,514 - INFO - Required sample size total: 385
-2025-09-10 00:07:30,514 - INFO - Required positives: 3
-2025-09-10 00:07:30,514 - INFO - Required negatives: 382
-2025-09-10 00:07:30,515 - INFO - Calculating correlation with target
-2025-09-10 00:07:30,516 - INFO - Correlation with target variable 'anomaly_flag':
+2025-09-10 23:40:07,464 - INFO - Number of duplicate rows: 3931
+2025-09-10 23:40:07,467 - INFO - Records with missing VIN but 'No anomaly detected': 11104
+2025-09-10 23:40:07,467 - INFO - Analyzing class imbalance
+2025-09-10 23:40:07,467 - INFO - Class counts: {0: 50215, 1: 335}
+2025-09-10 23:40:07,477 - INFO - Class imbalance ratio: 149.8955223880597
+2025-09-10 23:40:07,477 - INFO - Prevalence: 0.006627101879327399
+2025-09-10 23:40:07,477 - INFO - Wilson 95% CI for prevalence: low: 0.0059563230214087805, high: 0.007372861059875738
+2025-09-10 23:40:07,477 - INFO - Standard Error: 0.000360875498778133
+2025-09-10 23:40:07,478 - INFO - Required sample size total: 385
+2025-09-10 23:40:07,478 - INFO - Required positives: 3
+2025-09-10 23:40:07,478 - INFO - Required negatives: 382
+2025-09-10 23:40:07,479 - INFO - Calculating correlation with target
+2025-09-10 23:40:07,481 - INFO - Correlation with target variable 'anomaly_flag':
 anomaly_flag    1.0
 Name: anomaly_flag, dtype: float64
-2025-09-10 00:07:30,520 - INFO - Dropping columns: ['entity_name', 'anomaly_description']
-2025-09-10 00:07:30,522 - INFO - Dropping highly correlated columns: []
-2025-09-10 00:07:30,522 - INFO - Final dataframe shape for modeling: (5055, 6)
-2025-09-10 00:07:31,290 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2025-09-10 00:07:31,294 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2025-09-10 00:07:31,313 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2025-09-10 00:07:31,317 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
-2025-09-10 00:07:34,064 - INFO - Numeric features: []
-2025-09-10 00:07:34,064 - INFO - Categorical features: ['layer_name', 'ctt_cms_contract_number', 'ctt_vin', 'ctt_asset_type_segment']
-2025-09-10 00:07:34,064 - INFO - Training Logistic Regression model
-2025-09-10 00:07:34,147 - INFO - Training Random Forest model
-2025-09-10 00:07:35,473 - INFO - Evaluating model performance
-2025-09-10 00:07:35,553 - INFO - Evaluation metrics: {'train_accuracy': 0.9933234421364985, 'test_accuracy': 0.9930761622156281, 'roc_auc': np.float64(0.5898548662492885), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.008683938732535238), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.5)}
-2025-09-10 00:07:35,559 - INFO - Classification report:
+2025-09-10 23:40:07,489 - INFO - Dropping columns: ['entity_name', 'anomaly_description']
+2025-09-10 23:40:07,495 - INFO - Dropping highly correlated columns: []
+2025-09-10 23:40:07,498 - INFO - Final dataframe shape for modeling: (50550, 6)
+2025-09-10 23:40:07,647 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:40:07,659 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:40:07,683 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:40:07,686 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:40:07,768 - INFO - Numeric features: []
+2025-09-10 23:40:07,768 - INFO - Categorical features: ['layer_name', 'ctt_cms_contract_number', 'ctt_vin', 'ctt_asset_type_segment']
+2025-09-10 23:40:07,768 - INFO - Training Logistic Regression model
+2025-09-10 23:40:08,156 - INFO - Training Random Forest model
+2025-09-10 23:42:37,126 - INFO - Training Logistic Regression model
+2025-09-10 23:42:37,642 - INFO - Training Random Forest model
+2025-09-10 23:46:02,590 - INFO - Evaluating model performance
+2025-09-10 23:46:02,867 - INFO - Evaluation metrics: {'train_accuracy': 0.9933728981206726, 'test_accuracy': 0.9933728981206726, 'roc_auc': np.float64(0.5579069701774906), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.022792844652712824), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.5)}
+2025-09-10 23:46:02,875 - INFO - Classification report:
               precision    recall  f1-score   support
 
-           0       0.99      1.00      1.00      1004
-           1       0.00      0.00      0.00         7
+           0       0.99      1.00      1.00     10043
+           1       0.00      0.00      0.00        67
 
-    accuracy                           0.99      1011
-   macro avg       0.50      0.50      0.50      1011
-weighted avg       0.99      0.99      0.99      1011
+    accuracy                           0.99     10110
+   macro avg       0.50      0.50      0.50     10110
+weighted avg       0.99      0.99      0.99     10110
 
-2025-09-10 00:07:35,560 - INFO - Confusion matrix:
-[[1004    0]
- [   7    0]]
-2025-09-10 00:07:35,560 - INFO - Evaluating model performance
-2025-09-10 00:07:35,936 - INFO - Evaluation metrics: {'train_accuracy': 0.9980217606330366, 'test_accuracy': 0.9910979228486647, 'roc_auc': np.float64(0.49302788844621515), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.006923837784371909), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.499003984063745)}
-2025-09-10 00:07:35,939 - INFO - Classification report:
+2025-09-10 23:46:02,876 - INFO - Confusion matrix:
+[[10043     0]
+ [   67     0]]
+2025-09-10 23:46:02,876 - INFO - Evaluating model performance
+2025-09-10 23:46:23,194 - INFO - Evaluation metrics: {'train_accuracy': 0.9945103857566766, 'test_accuracy': 0.9920870425321464, 'roc_auc': np.float64(0.5578237459521074), 'precision': np.float64(0.06666666666666667), 'recall': np.float64(0.014925373134328358), 'pr_auc': np.float64(0.025255195951344407), 'f1': np.float64(0.024390243902439025), 'balanced_acc': np.float64(0.5067656836795807)}
+2025-09-10 23:46:23,198 - INFO - Classification report:
               precision    recall  f1-score   support
 
-           0       0.99      1.00      1.00      1004
-           1       0.00      0.00      0.00         7
+           0       0.99      1.00      1.00     10043
+           1       0.07      0.01      0.02        67
 
-    accuracy                           0.99      1011
-   macro avg       0.50      0.50      0.50      1011
-weighted avg       0.99      0.99      0.99      1011
+    accuracy                           0.99     10110
+   macro avg       0.53      0.51      0.51     10110
+weighted avg       0.99      0.99      0.99     10110
 
-2025-09-10 00:07:35,939 - INFO - Confusion matrix:
-[[1002    2]
- [   7    0]]
+2025-09-10 23:46:23,198 - INFO - Confusion matrix:
+[[10029    14]
+ [   66     1]]
+2025-09-10 23:46:23,198 - INFO - Evaluating model performance
+2025-09-10 23:46:23,536 - INFO - Evaluation metrics: {'train_accuracy': 0.9829624134520277, 'test_accuracy': 0.9772502472799208, 'roc_auc': np.float64(0.5572961638090539), 'precision': np.float64(0.049723756906077346), 'recall': np.float64(0.13432835820895522), 'pr_auc': np.float64(0.020534107622001602), 'f1': np.float64(0.07258064516129033), 'balanced_acc': np.float64(0.5586010007713103)}
+2025-09-10 23:46:23,536 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99     10043
+           1       0.05      0.13      0.07        67
+
+    accuracy                           0.98     10110
+   macro avg       0.52      0.56      0.53     10110
+weighted avg       0.99      0.98      0.98     10110
+
+2025-09-10 23:46:23,536 - INFO - Confusion matrix:
+[[9871  172]
+ [  58    9]]
+2025-09-10 23:46:23,545 - INFO - Evaluating model performance
+2025-09-10 23:46:43,757 - INFO - Evaluation metrics: {'train_accuracy': 0.9830365974282889, 'test_accuracy': 0.977349159248269, 'roc_auc': np.float64(0.5695182357653137), 'precision': np.float64(0.05), 'recall': np.float64(0.13432835820895522), 'pr_auc': np.float64(0.016554964457804265), 'f1': np.float64(0.0728744939271255), 'balanced_acc': np.float64(0.5586507866918519)}
+2025-09-10 23:46:43,767 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99     10043
+           1       0.05      0.13      0.07        67
+
+    accuracy                           0.98     10110
+   macro avg       0.52      0.56      0.53     10110
+weighted avg       0.99      0.98      0.98     10110
+
+2025-09-10 23:46:43,768 - INFO - Confusion matrix:
+[[9872  171]
+ [  58    9]]
+2025-09-10 23:46:50,075 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:46:50,092 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:46:50,121 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:46:50,136 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:46:50,235 - INFO - Numeric features: []
+2025-09-10 23:46:50,235 - INFO - Categorical features: ['layer_name', 'ctt_cms_contract_number', 'ctt_vin', 'ctt_asset_type_segment']
+2025-09-10 23:46:50,235 - INFO - Training Logistic Regression model
+2025-09-10 23:46:50,554 - INFO - Training Random Forest model
+2025-09-10 23:50:01,617 - INFO - Training Logistic Regression model
+2025-09-10 23:50:02,489 - INFO - Training Random Forest model
+2025-09-10 23:53:50,838 - INFO - Evaluating model performance
+2025-09-10 23:53:51,261 - INFO - Evaluation metrics: {'train_accuracy': 0.9933728981206726, 'test_accuracy': 0.9933728981206726, 'roc_auc': np.float64(0.6033674602195633), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.02067552011209676), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.5)}
+2025-09-10 23:53:51,274 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00     10043
+           1       0.00      0.00      0.00        67
+
+    accuracy                           0.99     10110
+   macro avg       0.50      0.50      0.50     10110
+weighted avg       0.99      0.99      0.99     10110
+
+2025-09-10 23:53:51,276 - INFO - Confusion matrix:
+[[10043     0]
+ [   67     0]]
+2025-09-10 23:53:51,276 - INFO - Evaluating model performance
+2025-09-10 23:54:16,280 - INFO - Evaluation metrics: {'train_accuracy': 0.9946340257171118, 'test_accuracy': 0.991295746785361, 'roc_auc': np.float64(0.5915109803962365), 'precision': np.float64(0.043478260869565216), 'recall': np.float64(0.014925373134328358), 'pr_auc': np.float64(0.017258249353144836), 'f1': np.float64(0.022222222222222223), 'balanced_acc': np.float64(0.5063673963152474)}
+2025-09-10 23:54:16,290 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00     10043
+           1       0.04      0.01      0.02        67
+
+    accuracy                           0.99     10110
+   macro avg       0.52      0.51      0.51     10110
+weighted avg       0.99      0.99      0.99     10110
+
+2025-09-10 23:54:16,292 - INFO - Confusion matrix:
+[[10021    22]
+ [   66     1]]
+2025-09-10 23:54:16,292 - INFO - Evaluating model performance
+2025-09-10 23:54:16,637 - INFO - Evaluation metrics: {'train_accuracy': 0.9829376854599406, 'test_accuracy': 0.977349159248269, 'roc_auc': np.float64(0.6016836558024375), 'precision': np.float64(0.06914893617021277), 'recall': np.float64(0.19402985074626866), 'pr_auc': np.float64(0.019144539386675347), 'f1': np.float64(0.10196078431372549), 'balanced_acc': np.float64(0.5883023892783419)}
+2025-09-10 23:54:16,649 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99     10043
+           1       0.07      0.19      0.10        67
+
+    accuracy                           0.98     10110
+   macro avg       0.53      0.59      0.55     10110
+weighted avg       0.99      0.98      0.98     10110
+
+2025-09-10 23:54:16,650 - INFO - Confusion matrix:
+[[9868  175]
+ [  54   13]]
+2025-09-10 23:54:16,651 - INFO - Evaluating model performance
+2025-09-10 23:54:39,603 - INFO - Evaluation metrics: {'train_accuracy': 0.9830365974282889, 'test_accuracy': 0.9774480712166173, 'roc_auc': np.float64(0.5882637494594141), 'precision': np.float64(0.06951871657754011), 'recall': np.float64(0.19402985074626866), 'pr_auc': np.float64(0.0217684835083913), 'f1': np.float64(0.10236220472440945), 'balanced_acc': np.float64(0.5883521751988836)}
+2025-09-10 23:54:39,608 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99     10043
+           1       0.07      0.19      0.10        67
+
+    accuracy                           0.98     10110
+   macro avg       0.53      0.59      0.55     10110
+weighted avg       0.99      0.98      0.98     10110
+
+2025-09-10 23:54:39,609 - INFO - Confusion matrix:
+[[9869  174]
+ [  54   13]]
+2025-09-10 23:54:46,922 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:54:46,937 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:54:46,989 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:54:47,000 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-10 23:54:47,115 - INFO - Numeric features: []
+2025-09-10 23:54:47,115 - INFO - Categorical features: ['layer_name', 'ctt_cms_contract_number', 'ctt_vin', 'ctt_asset_type_segment']
+2025-09-10 23:54:47,115 - INFO - Training Logistic Regression model
+2025-09-10 23:54:47,508 - INFO - Training Random Forest model
+2025-09-10 23:58:14,022 - INFO - Training Logistic Regression model
+2025-09-10 23:58:15,007 - INFO - Training Random Forest model
+2025-09-11 00:02:18,596 - INFO - Evaluating model performance
+2025-09-11 00:02:18,989 - INFO - Evaluation metrics: {'train_accuracy': 0.9933728981206726, 'test_accuracy': 0.9933728981206726, 'roc_auc': np.float64(0.6091307378273425), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.032012117593989614), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.5)}
+2025-09-11 00:02:19,001 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00     10043
+           1       0.00      0.00      0.00        67
+
+    accuracy                           0.99     10110
+   macro avg       0.50      0.50      0.50     10110
+weighted avg       0.99      0.99      0.99     10110
+
+2025-09-11 00:02:19,002 - INFO - Confusion matrix:
+[[10043     0]
+ [   67     0]]
+2025-09-11 00:02:19,002 - INFO - Evaluating model performance
+2025-09-11 00:02:41,686 - INFO - Evaluation metrics: {'train_accuracy': 0.9944114737883284, 'test_accuracy': 0.9926805143422354, 'roc_auc': np.float64(0.6183433623478743), 'precision': np.float64(0.1111111111111111), 'recall': np.float64(0.014925373134328358), 'pr_auc': np.float64(0.044809696151718544), 'f1': np.float64(0.02631578947368421), 'balanced_acc': np.float64(0.5070643992028308)}
+2025-09-11 00:02:41,690 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00     10043
+           1       0.11      0.01      0.03        67
+
+    accuracy                           0.99     10110
+   macro avg       0.55      0.51      0.51     10110
+weighted avg       0.99      0.99      0.99     10110
+
+2025-09-11 00:02:41,693 - INFO - Confusion matrix:
+[[10035     8]
+ [   66     1]]
+2025-09-11 00:02:41,694 - INFO - Evaluating model performance
+2025-09-11 00:02:42,098 - INFO - Evaluation metrics: {'train_accuracy': 0.981973293768546, 'test_accuracy': 0.9790306627101879, 'roc_auc': np.float64(0.608499868476001), 'precision': np.float64(0.09497206703910614), 'recall': np.float64(0.2537313432835821), 'pr_auc': np.float64(0.032964186719489044), 'f1': np.float64(0.13821138211382114), 'balanced_acc': np.float64(0.6188003525140404)}
+2025-09-11 00:02:42,106 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99     10043
+           1       0.09      0.25      0.14        67
+
+    accuracy                           0.98     10110
+   macro avg       0.54      0.62      0.56     10110
+weighted avg       0.99      0.98      0.98     10110
+
+2025-09-11 00:02:42,111 - INFO - Confusion matrix:
+[[9881  162]
+ [  50   17]]
+2025-09-11 00:02:42,111 - INFO - Evaluating model performance
+2025-09-11 00:03:03,829 - INFO - Evaluation metrics: {'train_accuracy': 0.9820722057368941, 'test_accuracy': 0.9790306627101879, 'roc_auc': np.float64(0.6224310093463777), 'precision': np.float64(0.09497206703910614), 'recall': np.float64(0.2537313432835821), 'pr_auc': np.float64(0.027979076178858742), 'f1': np.float64(0.13821138211382114), 'balanced_acc': np.float64(0.6188003525140404)}
+2025-09-11 00:03:03,836 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99     10043
+           1       0.09      0.25      0.14        67
+
+    accuracy                           0.98     10110
+   macro avg       0.54      0.62      0.56     10110
+weighted avg       0.99      0.98      0.98     10110
+
+2025-09-11 00:03:03,843 - INFO - Confusion matrix:
+[[9881  162]
+ [  50   17]]
+2025-09-11 00:03:11,761 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-11 00:03:11,783 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-11 00:03:11,826 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-11 00:03:11,837 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-11 00:03:11,935 - INFO - Numeric features: []
+2025-09-11 00:03:11,935 - INFO - Categorical features: ['layer_name', 'ctt_cms_contract_number', 'ctt_vin', 'ctt_asset_type_segment']
+2025-09-11 00:03:11,936 - INFO - Training Logistic Regression model
+2025-09-11 00:03:12,379 - INFO - Training Random Forest model
+2025-09-11 00:08:16,350 - INFO - Training Logistic Regression model
+2025-09-11 00:08:19,380 - INFO - Training Random Forest model
+2025-09-11 00:12:47,586 - INFO - Evaluating model performance
+2025-09-11 00:12:47,967 - INFO - Evaluation metrics: {'train_accuracy': 0.9933728981206726, 'test_accuracy': 0.9933728981206726, 'roc_auc': np.float64(0.6215935655784603), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.033709961769599436), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.5)}
+2025-09-11 00:12:47,974 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00     10043
+           1       0.00      0.00      0.00        67
+
+    accuracy                           0.99     10110
+   macro avg       0.50      0.50      0.50     10110
+weighted avg       0.99      0.99      0.99     10110
+
+2025-09-11 00:12:47,975 - INFO - Confusion matrix:
+[[10043     0]
+ [   67     0]]
+2025-09-11 00:12:47,975 - INFO - Evaluating model performance
+2025-09-11 00:13:11,536 - INFO - Evaluation metrics: {'train_accuracy': 0.9946092977250247, 'test_accuracy': 0.991295746785361, 'roc_auc': np.float64(0.6017326986495384), 'precision': np.float64(0.043478260869565216), 'recall': np.float64(0.014925373134328358), 'pr_auc': np.float64(0.0325869489884426), 'f1': np.float64(0.022222222222222223), 'balanced_acc': np.float64(0.5063673963152474)}
+2025-09-11 00:13:11,546 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00     10043
+           1       0.04      0.01      0.02        67
+
+    accuracy                           0.99     10110
+   macro avg       0.52      0.51      0.51     10110
+weighted avg       0.99      0.99      0.99     10110
+
+2025-09-11 00:13:11,557 - INFO - Confusion matrix:
+[[10021    22]
+ [   66     1]]
+2025-09-11 00:13:11,557 - INFO - Evaluating model performance
+2025-09-11 00:13:11,880 - INFO - Evaluation metrics: {'train_accuracy': 0.9827893175074184, 'test_accuracy': 0.97675568743818, 'roc_auc': np.float64(0.6188441938470546), 'precision': np.float64(0.07575757575757576), 'recall': np.float64(0.22388059701492538), 'pr_auc': np.float64(0.03078216491264324), 'f1': np.float64(0.11320754716981132), 'balanced_acc': np.float64(0.602829475048337)}
+2025-09-11 00:13:11,886 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99     10043
+           1       0.08      0.22      0.11        67
+
+    accuracy                           0.98     10110
+   macro avg       0.54      0.60      0.55     10110
+weighted avg       0.99      0.98      0.98     10110
+
+2025-09-11 00:13:11,887 - INFO - Confusion matrix:
+[[9860  183]
+ [  52   15]]
+2025-09-11 00:13:11,888 - INFO - Evaluating model performance
+2025-09-11 00:13:35,752 - INFO - Evaluation metrics: {'train_accuracy': 0.9828387734915924, 'test_accuracy': 0.9769535113748764, 'roc_auc': np.float64(0.6023925478650757), 'precision': np.float64(0.07653061224489796), 'recall': np.float64(0.22388059701492538), 'pr_auc': np.float64(0.02936390381715062), 'f1': np.float64(0.11406844106463879), 'balanced_acc': np.float64(0.6029290468894203)}
+2025-09-11 00:13:35,757 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99     10043
+           1       0.08      0.22      0.11        67
+
+    accuracy                           0.98     10110
+   macro avg       0.54      0.60      0.55     10110
+weighted avg       0.99      0.98      0.98     10110
+
+2025-09-11 00:13:35,758 - INFO - Confusion matrix:
+[[9862  181]
+ [  52   15]]
+2025-09-11 00:13:44,523 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-11 00:13:44,554 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-11 00:13:44,596 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-11 00:13:44,599 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-09-11 00:13:44,779 - INFO - Numeric features: []
+2025-09-11 00:13:44,779 - INFO - Categorical features: ['layer_name', 'ctt_cms_contract_number', 'ctt_vin', 'ctt_asset_type_segment']
+2025-09-11 00:13:44,780 - INFO - Training Logistic Regression model
+2025-09-11 00:13:46,039 - INFO - Training Random Forest model
+2025-09-11 00:17:38,354 - INFO - Training Logistic Regression model
+2025-09-11 00:17:38,859 - INFO - Training Random Forest model
+2025-09-11 00:21:32,100 - INFO - Evaluating model performance
+2025-09-11 00:21:32,449 - INFO - Evaluation metrics: {'train_accuracy': 0.9933728981206726, 'test_accuracy': 0.9933728981206726, 'roc_auc': np.float64(0.6037389969400236), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.020795620407644662), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.5)}
+2025-09-11 00:21:32,460 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00     10043
+           1       0.00      0.00      0.00        67
+
+    accuracy                           0.99     10110
+   macro avg       0.50      0.50      0.50     10110
+weighted avg       0.99      0.99      0.99     10110
+
+2025-09-11 00:21:32,463 - INFO - Confusion matrix:
+[[10043     0]
+ [   67     0]]
+2025-09-11 00:21:32,464 - INFO - Evaluating model performance
+2025-09-11 00:21:54,282 - INFO - Evaluation metrics: {'train_accuracy': 0.9945351137487636, 'test_accuracy': 0.9909000989119684, 'roc_auc': np.float64(0.5870941518634052), 'precision': np.float64(0.0), 'recall': np.float64(0.0), 'pr_auc': np.float64(0.01631338310994942), 'f1': np.float64(0.0), 'balanced_acc': np.float64(0.4987553519864582)}
+2025-09-11 00:21:54,287 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00     10043
+           1       0.00      0.00      0.00        67
+
+    accuracy                           0.99     10110
+   macro avg       0.50      0.50      0.50     10110
+weighted avg       0.99      0.99      0.99     10110
+
+2025-09-11 00:21:54,289 - INFO - Confusion matrix:
+[[10018    25]
+ [   67     0]]
+2025-09-11 00:21:54,290 - INFO - Evaluating model performance
+2025-09-11 00:21:54,609 - INFO - Evaluation metrics: {'train_accuracy': 0.9836053412462908, 'test_accuracy': 0.9765578635014837, 'roc_auc': np.float64(0.5958624184662668), 'precision': np.float64(0.0663265306122449), 'recall': np.float64(0.19402985074626866), 'pr_auc': np.float64(0.01929677009014569), 'f1': np.float64(0.09885931558935361), 'balanced_acc': np.float64(0.5879041019140085)}
+2025-09-11 00:21:54,614 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99     10043
+           1       0.07      0.19      0.10        67
+
+    accuracy                           0.98     10110
+   macro avg       0.53      0.59      0.54     10110
+weighted avg       0.99      0.98      0.98     10110
+
+2025-09-11 00:21:54,619 - INFO - Confusion matrix:
+[[9860  183]
+ [  54   13]]
+2025-09-11 00:21:54,621 - INFO - Evaluating model performance
+2025-09-11 00:22:21,032 - INFO - Evaluation metrics: {'train_accuracy': 0.983679525222552, 'test_accuracy': 0.9765578635014837, 'roc_auc': np.float64(0.5872383081109438), 'precision': np.float64(0.0663265306122449), 'recall': np.float64(0.19402985074626866), 'pr_auc': np.float64(0.018343463381434413), 'f1': np.float64(0.09885931558935361), 'balanced_acc': np.float64(0.5879041019140085)}
+2025-09-11 00:22:21,050 - INFO - Classification report:
+              precision    recall  f1-score   support
+
+           0       0.99      0.98      0.99     10043
+           1       0.07      0.19      0.10        67
+
+    accuracy                           0.98     10110
+   macro avg       0.53      0.59      0.54     10110
+weighted avg       0.99      0.98      0.98     10110
+
+2025-09-11 00:22:21,054 - INFO - Confusion matrix:
+[[9860  183]
+ [  54   13]]
